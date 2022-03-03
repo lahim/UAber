@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongodb
+    build:
+      context: ./services/mongodb
+      dockerfile: Dockerfile
+    volumes:
+      - ./bin/data/db:/data/db/
+    ports:
+      - "27017:27017"
+    restart: on-failure
+
+  uaberapi:
+    build:
+      context: ./uaber-api
+      dockerfile: Dockerfile
+    command: "uvicorn main:app --reload --host 0.0.0.0 --port 8000"
+    ports:
+      - "8000:8000"
+    restart: on-failure
