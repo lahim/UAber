@@ -1,3 +1,9 @@
+<p align="right">
+<a href="https://github.com/lahim/UAber" target="_blank">
+    <img src="https://img.shields.io/badge/python-3.10-brightgreen" alt="Supported Python versions"
+</a>
+</p>
+
 # Code4Ukraine:UAber app
 
 ## Pre-installed

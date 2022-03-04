@@ -1,7 +1,7 @@
 from typing import List
 
-from . import db
 from ..models import Driver
+from . import db
 
 
 async def find_drivers() -> List[Driver]:
