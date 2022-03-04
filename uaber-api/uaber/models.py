@@ -1,22 +1,13 @@
 import uuid
-import motor.motor_asyncio
-
 from enum import Enum
-from typing import Optional, List, Any
+from typing import Any, List, Optional
 
 from pydantic import BaseModel
 from pydantic.fields import PrivateAttr
 
-from uaber import settings
-
-db_client = motor.motor_asyncio.AsyncIOMotorClient(
-    settings.DATABASE['uri'], maxPoolSize=settings.DATABASE['max_pool_size']
-)
-db = db_client[settings.DATABASE['db_name']]
-
 
 class Location(BaseModel):
-    type: str = 'Point'
+    type: str = "Point"
     coords: List[float]
 
 
@@ -27,11 +18,11 @@ class Address(BaseModel):
 
 
 class VehicleType(str, Enum):
-    MINI = 'MINI'
-    SMALL = 'SMALL'
-    MID = 'MID'
-    SUV = 'SUV'
-    BUS = 'BUS'
+    MINI = "MINI"
+    SMALL = "SMALL"
+    MID = "MID"
+    SUV = "SUV"
+    BUS = "BUS"
 
 
 class Vehicle(BaseModel):
@@ -41,9 +32,9 @@ class Vehicle(BaseModel):
 
 
 class DriverActionType(str, Enum):
-    CHECK_IN = 'CHECK_IN'
-    CHECK_OUT = 'CHECK_OUT'
-    ABORT = 'ABORT'
+    CHECK_IN = "CHECK_IN"
+    CHECK_OUT = "CHECK_OUT"
+    ABORT = "ABORT"
 
 
 class DriverAction(BaseModel):
@@ -70,7 +61,7 @@ class Driver(BaseModel):
     check_out: Optional[DriverCheckOut] = None
 
     def __init__(self, **data: Any) -> None:
-        data['uid'] = str(uuid.uuid4()) if not data.get('uid') else data['uid']
+        data["uid"] = str(uuid.uuid4()) if not data.get("uid") else data["uid"]
         super().__init__(**data)
 
 

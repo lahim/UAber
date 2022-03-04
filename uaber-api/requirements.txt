@@ -8,20 +8,40 @@ anyio==3.5.0
     # via starlette
 asgiref==3.5.0
     # via uvicorn
+black==22.1.0
+    # via -r requirements.in
 click==8.0.4
-    # via uvicorn
+    # via
+    #   black
+    #   uvicorn
 fastapi==0.74.1
+    # via -r requirements.in
+flake8==4.0.1
     # via -r requirements.in
 h11==0.13.0
     # via uvicorn
 idna==3.3
     # via anyio
+isort==5.10.1
+    # via -r requirements.in
+mccabe==0.6.1
+    # via flake8
 motor==2.5.1
     # via -r requirements.in
+mypy-extensions==0.4.3
+    # via black
+pathspec==0.9.0
+    # via black
+platformdirs==2.5.1
+    # via black
+pycodestyle==2.8.0
+    # via flake8
 pydantic==1.9.0
     # via
     #   -r requirements.in
     #   fastapi
+pyflakes==2.4.0
+    # via flake8
 pymongo==3.12.3
     # via
     #   -r requirements.in
@@ -30,6 +50,8 @@ sniffio==1.2.0
     # via anyio
 starlette==0.17.1
     # via fastapi
+tomli==2.0.1
+    # via black
 typing-extensions==4.1.1
     # via pydantic
 uvicorn==0.17.5

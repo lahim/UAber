@@ -3,3 +3,6 @@ motor
 pymongo
 pydantic
 uvicorn
+black
+isort
+flake8
