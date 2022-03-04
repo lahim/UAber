@@ -40,24 +40,38 @@ class Vehicle(BaseModel):
     plate: str
 
 
+class DriverActionType(str, Enum):
+    CHECK_IN = 'CHECK_IN'
+    CHECK_OUT = 'CHECK_OUT'
+    ABORT = 'ABORT'
+
+
+class DriverAction(BaseModel):
+    loc: Location
+    action_type: DriverActionType
+    time: int
+
+
+class DriverCheckIn(DriverAction):
+    action_type: DriverActionType = DriverActionType.CHECK_IN
+
+
+class DriverCheckOut(DriverAction):
+    action_type: DriverActionType = DriverActionType.CHECK_OUT
+
+
 class Driver(BaseModel):
     _id: str = PrivateAttr()
     uid: str
     name: str
     vehicle: Vehicle
     address: Address
-    check_in_loc: Optional[Location] = None
-    check_in_time: Optional[int] = None
-    check_out_loc: Optional[Location] = None
-    check_out_time: Optional[int] = None
+    check_in: Optional[DriverCheckIn] = None
+    check_out: Optional[DriverCheckOut] = None
 
     def __init__(self, **data: Any) -> None:
         data['uid'] = str(uuid.uuid4()) if not data.get('uid') else data['uid']
         super().__init__(**data)
-
-
-class DriverCheckIn(BaseModel):
-    pass
 
 
 class BorderCrossingPoint(BaseModel):
