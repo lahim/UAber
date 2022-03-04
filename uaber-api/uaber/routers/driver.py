@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from uaber.models import Driver
+from uaber.models import Driver, Trip, Refugee, BorderCrossingPoint, DestinationPoint
 from uaber.services import driver as driver_service
 
 router = APIRouter(
@@ -20,4 +20,11 @@ async def create_driver(driver: Driver) -> Driver:
     return await driver_service.create_driver(driver)
 
 
-# todo: add rest api endpoints below
+@router.put('/{id}/checkin')
+async def update_diver_check_in(driver_id: str) -> Driver:
+    return await driver_service.update_diver.check_in_driver(driver_id)
+
+
+@router.put('/{id}/checkout')
+async def update_diver_check_in(driver_id: str) -> Driver:
+    return await driver_service.update_diver.check_out_driver(driver_id)
